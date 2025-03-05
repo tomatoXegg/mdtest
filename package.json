@@ -2,7 +2,7 @@
   "name": "md",
   "version": "1.6.0",
   "private": false,
-  "type": "commonjs", 
+  "type": "commonjs",
   "scripts": {
     "start": "npm run dev",
     "dev": "vite --host",
