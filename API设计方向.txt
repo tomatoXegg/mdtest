@@ -1,0 +1,57 @@
+API设计方向
+
+POST /api/convert
+Content-Type: application/json
+
+请求体：
+{
+  "markdown": "# 标题\n这是内容",
+  "options": {
+    "theme": "default",         // 可选，主题样式
+    "fontSize": "16px",         // 可选，字体大小
+    "fontFamily": "微软雅黑",   // 可选，字体
+    "primaryColor": "#1e80ff", // 可选，主色调
+    "codeTheme": "github",     // 可选，代码块主题
+    "useIndent": false         // 可选，是否首行缩进
+  }
+}
+
+响应：
+{
+  "code": 0,
+  "data": {
+    "html": "<h1>标题</h1><p>这是内容</p>",
+    "title": "标题",
+    "readingTime": {
+      "minutes": 1,
+      "words": 100
+    }
+  },
+  "message": "success"
+}
+
+0: 成功
+400: 参数错误
+401: 未授权
+500: 服务器内部错误
+
+### 3. 核心功能支持
+基于现有代码中的 `src/utils/renderer.ts` 实现：
+
+1. Markdown 基础语法转换
+   
+   - 标题、段落、列表
+   - 代码块（支持语法高亮）
+   - 表格
+   - 链接和图片
+2. 样式处理
+   
+   - 主题定制
+   - 字体设置
+   - 代码高亮主题
+   - 首行缩进
+3. 扩展功能
+   
+   - 阅读时间估算
+   - 字数统计
+   - XSS 防护

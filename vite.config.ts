@@ -10,11 +10,20 @@ import { defineConfig } from 'vite'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.SERVER_ENV === `NETLIFY` ? `/` : `/md/`, // 基本路径, 建议以绝对路径跟随访问目录
+  base: process.env.SERVER_ENV === `NETLIFY` ? `/` : `/md/`,
   define: {
     process,
+  },
+  // 添加服务器配置
+  server: {
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: `http://localhost:3000`,
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     vue(),
