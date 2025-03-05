@@ -13,6 +13,14 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// 添加根路由
+app.get('/', (_req: any, res: any) => {
+  res.json({
+    code: 0,
+    message: 'Markdown API 服务正常运行',
+  })
+})
+
 app.post('/api/convert', (req: any, res: any) => {
   try {
     const { markdown } = req.body
