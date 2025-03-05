@@ -50,7 +50,13 @@ app.post(`/api/convert`, (req, res) => {
 
 // 添加服务器启动代码
 // 修改服务器启动代码
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-  console.log(`API 服务已启动在端口 ${PORT}`)
-})
+// 仅在非生产环境启动服务器
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 3000
+  app.listen(PORT, () => {
+    console.log(`API 服务已启动在端口 ${PORT}`)
+  })
+}
+
+// 导出 app 实例供 Vercel 使用
+export default app
