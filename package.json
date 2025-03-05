@@ -1,8 +1,8 @@
 {
   "name": "md",
-  "type": "module",
   "version": "1.6.0",
   "private": false,
+  "type": "commonjs", 
   "scripts": {
     "start": "npm run dev",
     "dev": "vite --host",
