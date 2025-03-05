@@ -1,3 +1,4 @@
+import process from 'node:process'
 import cors from 'cors'
 import createDOMPurify from 'dompurify'
 import express from 'express'
@@ -48,6 +49,7 @@ app.post(`/api/convert`, (req, res) => {
 })
 
 // 添加服务器启动代码
+// 修改服务器启动代码
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`API 服务已启动在端口 ${PORT}`)
